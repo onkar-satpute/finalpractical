@@ -1,6 +1,8 @@
 package main
+
 import (
-"fmt"
-"go_practicals/sq"
+	"fmt"
+	"goprac4/sq"
 )
-func main(){fmt.Println(sq.Area(4))}
+
+func main() { fmt.Println(sq.Area(4)) }
