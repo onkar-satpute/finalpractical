@@ -1,6 +1,6 @@
 package main
 import (
 "fmt"
-"go_practicals/rectangle"
+"goprac4/rectangle"
 )
 func main(){fmt.Println(rectangle.Area(5,4))}

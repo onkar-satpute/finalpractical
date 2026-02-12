@@ -1,6 +1,6 @@
 package main
 import (
 "fmt"
-"go_practicals/calculator"
+"goprac4/calculator"
 )
 func main(){fmt.Println(calculator.Add(5,3))}
