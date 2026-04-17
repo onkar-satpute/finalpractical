@@ -1,0 +1,47 @@
+// Write a program in GO language to create an interface and display its values with the help of type assertion.
+
+package main
+
+import "fmt"
+
+func main() {
+	var i interface{} = 5.2
+
+	if v, result := i.(string); result {
+		fmt.Println("Value is :", v, "\nIt is a String")
+	} else if v, result := i.(int); result {
+		fmt.Println("Value is :", v, "\nIt is a Integer")
+	} else if v, result := i.(float64); result {
+		fmt.Println("Value is :", v, "\nIt is a Float")
+	}
+}
+
+//Write a program  in GO language  to read and write Fibonacci series to the using channel.
+
+package main
+
+import "fmt"
+
+func fibonacci(n int, ch chan int) {
+	a, b := 0, 1
+	for i := 0; i < n; i++ {
+		ch <- a
+		a, b = b, a+b
+	}
+	close(ch)
+}
+
+func main() {
+	var n int
+	fmt.Print("Enter number of terms: ")
+	fmt.Scan(&n)
+
+	ch := make(chan int)
+
+	go fibonacci(n, ch)
+
+	fmt.Println("Fibonacci Series:")
+	for v := range ch {
+		fmt.Print(v, " ")
+	}
+}

@@ -1,0 +1,47 @@
+// Write a program in GO language to check whether the accepted number is two digit or not.
+package main
+
+import "fmt"
+
+func main() {
+	var n int
+	fmt.Print("Enter a number: ")
+	fmt.Scan(&n)
+
+	if n < 0 {
+		n = -n
+	}
+
+	if n >= 10 && n <= 99 {
+		fmt.Println("It is a two digit number")
+	} else {
+		fmt.Println("It is NOT a two digit number")
+	}
+}
+
+/*Write  a  program  in  GO  language  to  create  a  buffered  channel,
+store few values in it and find channel capacity and length. Read
+values from channel and find modified length of a channel*/
+
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan int, 5)
+
+	// store values
+	ch <- 10
+	ch <- 20
+	ch <- 30
+
+	fmt.Println("Channel Capacity:", cap(ch))
+	fmt.Println("Channel Length:", len(ch))
+
+	// read values
+	fmt.Println("Reading values:")
+	fmt.Println(<-ch)
+	fmt.Println(<-ch)
+
+	fmt.Println("Modified Channel Length:", len(ch))
+}

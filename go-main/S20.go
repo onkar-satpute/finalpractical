@@ -1,0 +1,47 @@
+// Write a program in Go language to add or append content at the end of a text file.
+package main
+
+import (
+	"fmt"
+	"os"
+)
+
+func main() {
+	f, err := os.OpenFile("shayari.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+	defer f.Close()
+
+	var text string
+	fmt.Print("Enter text to append: ")
+	fmt.Scanln(&text)
+
+	f.WriteString(text + "\n")
+	fmt.Println("Content appended successfully in shyari.txt!")
+}
+
+/*Write  a  program  in  Go  language  how  to  create  a  channel  and
+illustrate  how  to close  a channel using for range loop and close
+function.*/
+
+package main
+
+import "fmt"
+
+func main() {
+	ch := make(chan int)
+
+	go func() {
+		for i := 1; i <= 5; i++ {
+			ch <- i
+		}
+		close(ch)
+	}()
+
+	fmt.Println("Reading values from channel:")
+	for v := range ch {
+		fmt.Println(v)
+	}
+}

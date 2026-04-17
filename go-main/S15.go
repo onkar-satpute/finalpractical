@@ -1,0 +1,67 @@
+//Write a program in GO language to demonstrate function return multiple values.
+
+package main
+
+import "fmt"
+
+func calc(a int, b int) (int, int, int) {
+	sum := a + b
+	sub := a - b
+	mul := a * b
+	return sum, sub, mul
+}
+
+func main() {
+	var x, y int
+	fmt.Print("Enter two numbers: ")
+	fmt.Scan(&x, &y)
+
+	s, d, m := calc(x, y)
+
+	fmt.Println("Sum =", s)
+	fmt.Println("Sub =", d)
+	fmt.Println("Mul =", m)
+}
+
+//Write a program in GO language to read  XML file into structure and display structure
+
+package main
+
+import (
+	"encoding/xml"
+	"fmt"
+	"os"
+)
+
+type Student struct {
+	XMLName xml.Name `xml:"student"`
+	RollNo  int      `xml:"rollno"`
+	Name    string   `xml:"name"`
+	Marks   int      `xml:"marks"`
+}
+
+func main() {
+	data, err := os.ReadFile("student.xml")
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	var s Student
+	err = xml.Unmarshal(data, &s)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
+	fmt.Println("Student Details:")
+	fmt.Println("Roll No:", s.RollNo)
+	fmt.Println("Name   :", s.Name)
+	fmt.Println("Marks  :", s.Marks)
+}
+//student.xml
+<student>
+    <rollno>47</rollno>
+    <name>Sanchet Kolekar</name>
+    <marks>90</marks>
+</student>
